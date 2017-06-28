@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>花满棠后台系统</title>
+    <script src="resources/jquery-1.8.2.min.js"></script>
+    <script src="resources/MD5.js"></script>
+    <script type="text/javascript" src="resources/common.js"></script>
+    <script>
+        document.onkeydown = function () {                //网页内按下回车触发
+            if (event.keyCode == 13) {
+                login();
+            }
+        };
+        function login() {
+            debugger;
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            if (password != '' && username != '') {
+                password = hex_md5(password);
+                $.post('api/ManagementSystem/UserLogin', {
+                            username: $('#username').val(),
+                            password: hex_md5($('#password').val()),
+                            random: Math.random()
+                        }, function (results) {
+                            debugger;
+                            if (results.success) {
+//                                var user = results.data[0];
+                                if(document.getElementById("checkMe").checked==true){
+                                    SetCookie("username",username,1);
+                                }
+                                location.href = 'ManagementSystem/';
+                            } else {
+                                alert(results.err.message);
+                            }
+                        }, 'json'
+                );
+            } else {
+                alert("请输入用户名或密码！");
+            }
+        }
+
+    </script>
+
+    <style type="text/css">
+        <!--
+        body {
+            margin-left: 0;
+            margin-top: 0;
+            margin-right: 0;
+            margin-bottom: 0;
+            /*background-color: #498fd7;*/
+            background-color: #404a54
+        }
+
+        /*body {*/
+            /*behavior: url("images/csshover.htc");*/
+        /*}*/
+
+        -->
+        .btnlogin {
+            background: url(images/login.gif) no-repeat;
+            height: 53px;
+            width: 183px;
+            text-align: center;
+            cursor: pointer;
+            line-height: 32px;
+            font-weight: bold;
+            border: none;
+        }
+
+        #btnlogin:hover {
+            background: url(images/login1.gif) no-repeat;
+        }
+
+        .login_top_bg {
+            background-image: url(images/login-top-bg1.gif);
+            background-repeat: repeat-x;
+        }
+
+        .login-buttom-bg {
+            background-image: url(images/login-buttom-bg.gif);
+            background-repeat: repeat-x;
+        }
+
+        .login-buttom-txt {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            line-height: 20px;
+        }
+
+        .login_txt {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            line-height: 25px;
+            color: #333333;
+        }
+
+        .login_bg {
+            background-image: url(images/login-content-bg.gif);
+            background-repeat: repeat-x;
+        }
+
+        .left_txt {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            line-height: 25px;
+            color: #666666;
+        }
+
+        .login_txt_bt {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            line-height: 25px;
+            color: #666666;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+<body>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td height="70" valign="top">
+            <table width="100%" height="70" border="0" cellpadding="0" cellspacing="0" class="login_top_bg">
+                <tr>
+                    <td align="center"><img src="images/logotitle.png" width="660" height="70" alt=""/></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table width="100%" height="400px" border="0" cellpadding="0" cellspacing="0" class="login_bg">
+                <tr>
+                    <td style="width: 50%" align="right">
+                        <table height="532" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td align="right" valign="middle">
+                                    <table border="0" style="padding:0 0px 0 100px" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td style="height:198px;">
+                                                <table width="550px" border="0" cellpadding="0" cellspacing="0">
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td><span class="login_txt_bt"><b style="font-size: 18px">欢迎登录花满棠后台系统</b></span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>&nbsp;</td>
+                                                        <td>
+                                                            <table cellspacing="0" cellpadding="0" border="0">
+                                                                <tr>
+                                                                    <td colspan="2">
+                                                                        <form name="myform" action="#" method="post">
+                                                                            <table width="340px" height="120px"
+                                                                                   border="0" style="">
+                                                                                <!--<tr>-->
+                                                                                <!--<td colspan="2" class="left_txt"><b-->
+                                                                                <!--style="font-size: 16px">类-->
+                                                                                <!--型：</b>-->
+                                                                                <!--<select id="userclass"-->
+                                                                                <!--name="userclass"-->
+                                                                                <!--style="width:220px;"-->
+                                                                                <!--onchange="SetCookie();">-->
+                                                                                <!--<option value="1"-->
+                                                                                <!--selected="true">系统管理-->
+                                                                                <!--</option>-->
+                                                                                <!--<option value="2">任务系统-->
+                                                                                <!--</option>-->
+                                                                                <!--<option value="3">积分管理-->
+                                                                                <!--</option>-->
+                                                                                <!--&lt;!&ndash;<option value="4">信息发布&ndash;&gt;-->
+                                                                                <!--&lt;!&ndash;</option>&ndash;&gt;-->
+                                                                                <!--<option value="5">网点管理-->
+                                                                                <!--</option>-->
+                                                                                <!--&lt;!&ndash;<option value="6">商家</option>&ndash;&gt;-->
+                                                                                <!--&lt;!&ndash;<option value="7">财务</option>&ndash;&gt;-->
+                                                                                <!--<option value="8">保单任务-->
+                                                                                <!--</option>-->
+                                                                                <!--<option value="9">综合管理-->
+                                                                                <!--</option>-->
+                                                                                <!--</select>-->
+                                                                                <!--</td>-->
+                                                                                <!--</tr>-->
+                                                                                <tr>
+                                                                                    <td colspan="2" class="left_txt"><b
+                                                                                            style="font-size: 16px">账
+                                                                                        号：</b>
+                                                                                        <input id="username"
+                                                                                               name="username"
+                                                                                               type="text"
+                                                                                               style="width:265px;"/>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td colspan="2" class="left_txt"><b
+                                                                                            style="font-size: 16px">密
+                                                                                        码：</b>
+                                                                                        <input id="password"
+                                                                                               name="password"
+                                                                                               type="password"
+                                                                                               style="width:265px;"/>
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td colspan="2" class="left_txt"><input type="checkbox" id="checkMe"><b style="font-size: 16px">记住帐号</b></td>
+                                                                                </tr>
+                                                                            </table>
+                                                                            <br/>
+                                                                        </form>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr lign="left">
+                                                        <td height="10%" valign="bottom"><img
+                                                                src="images/login-welcome.png" width="242" height="41"
+                                                                alt=""/></td>
+                                                        <td width="10%" valign="bottom">&nbsp;</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </td>
+                    <td width="1%">&nbsp;</td>
+                    <td width="50%" valign="middle" align="left">
+                        <table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding:0 0 0 0">
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td height="80" colspan="2" class="left_txt"><p>
+                                    <!--<button id="btn1" class="btn1" onclick="ssLogin();"></button>-->
+                                    <!--<img id="img4"  onmousemove="onMouseIN('img4')" onmouseout="onMouseOut('img4')" onclick="webLogin();" src="images/13.png"/></p></td>-->
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td height="80" colspan="2" class="left_txt">
+                                    <p>
+                                        <!--<button id="btn3" class="btn3" onclick="crsLogin();" ></button>-->
+                                        <!--<img id="img5"  onmouseover="onMouseIN1('img5')" onmouseout="onMouseOut1('img5')" onclick="staticsLogin();" src="images/14.png"/></p></td>-->
+                                        <button class="btnlogin" onclick="login();"></button>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td height="80" colspan="2" class="left_txt"><p>
+                                    <!--<button id="btn2" class="btn2" onclick="ManagementSystemLogin();"></button>-->
+                                    <!--<img id="img6"  onmouseover="onMouseIN2('img6')" onmouseout="onMouseOut2('img6')" onclick="webLogin(11);" src="images/151.png"/></p></td>-->
+                                    &nbsp;
+                            </tr>
+
+                        </table>
+                    </td>
+
+                </tr>
+            </table>
+        </td>
+
+    <tr>
+        <td height="20">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="login-buttom-bg">
+                <tr>
+                    <td align="center"><span class="login-buttom-txt">Copyright &copy; wuhan huachuangxinwang science&technology co.,ltd</span>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
+<script type="text/javascript">
+
+function SetCookie(name,value,oday) {
+//            debugger;
+    var odate=new Date();
+    odate.setDate(odate.getDate()+oday);
+    document.cookie = name+"=" + value+";expires="+odate;
+}
+
+function GetCookie() {
+//            debugger;
+    var _cookie = document.cookie;
+    var username = document.getElementById('username');
+    if (_cookie == '' || _cookie == undefined || _cookie == null) {//没有cookie
+        SetCookie("username",username.value,1);
+    }else{
+        username.value=_cookie.split("username=")[1];
+    }
+}
+GetCookie();
+</script>

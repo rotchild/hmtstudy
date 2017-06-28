@@ -1,0 +1,37 @@
+{
+  "name": "WechatServer",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "./app.js"
+  },
+  "dependencies": {
+    "archiver": "*",
+    "bull": "*",
+    "connect-multiparty": "*",
+    "connect-mysql": "*",
+    "connect-redis": "1.4.7",
+    "csv": "*",
+    "eventproxy": "*",
+    "express": "3.5.1",
+    "iconv-lite": "0.4.3",
+    "jade": "*",
+    "jugglingdb": "0.3.x",
+    "jugglingdb-mysql": "*",
+    "jugglingdb-redis": "*",
+    "mkdirp": "*",
+    "mqtt": "*",
+    "soap": "*",
+    "mustache": "*",
+    "mysql": "*",
+    "node-xlsx": "0.5.1",
+    "redis": "2.8.9",
+    "request": "*",
+    "sox": "0.1.0",
+    "underscore": "*",
+    "winston": "0.6.2",
+    "xml2js": "*",
+    "xmlreader": "0.2.3",
+    "images": "*"
+  }
+}
